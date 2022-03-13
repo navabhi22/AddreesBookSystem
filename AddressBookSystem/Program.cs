@@ -11,11 +11,11 @@ namespace AddressBookSystem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Program\n");
-
             AddressBook addressBook = new AddressBook();
 
-            addressBook.AddContact("Abhinav", "Kumar", "A-34 ", "New Delhi", "Delhi", 110023 , 9876543210 , "abc123@gmail.com");
+            addressBook.AddContact("Abhinav", "Kumar", "A-34 ", "New Delhi", "Delhi", 110023, 9876543210, "abc123@gmail.com");
             addressBook.ViewContact();
+
         }
     }
 }
