@@ -13,10 +13,10 @@ namespace AddressBookSystem
             Console.WriteLine("Welcome to Address Book Program\n");
 
             AddressBook addressBook = new AddressBook();
-            addressBook.AddContactDetails("Abhi", "Kumar", "A-23", "New Delhi", "Delhi", 110023, 99876543210, "abc123@gmail.com");
+            addressBook.AddContactDetails("Abhi", "Kumar", "A-23", "New Delhi", "Delhi", 110023, 9876543210, "abc123@gmail.com");
 
             Console.WriteLine("Please choose an option from the below list");
-            Console.WriteLine("\n 1. Add New Contact \n 2. View Contact \n 3. Edit Contact \n 4. Exit\n");
+            Console.WriteLine("\n1. Add New Contact \n2. View Contact \n3. Edit Contact \n4. Delete Contact \n5. Exit\n");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -27,12 +27,20 @@ namespace AddressBookSystem
                     addressBook.ViewContact();
                     break;
                 case 3:
-                    Console.WriteLine("Enter the First Name to Edit: ");
+                    Console.WriteLine("Enter the First Name to Edit Contact Details: ");
                     string input = Console.ReadLine();
                     addressBook.EditContact(input);
                     addressBook.ViewContact();
                     break;
                 case 4:
+                    Console.WriteLine("Enter the First Name of Contact: ");
+                    string fName = Console.ReadLine();
+                    Console.WriteLine("Enter the Last Name to Delete Contact: ");
+                    string lName = Console.ReadLine();
+                    addressBook.DeleteContact(fName, lName);
+                    addressBook.ViewContact();
+                    break;
+                case 5:
                     Environment.Exit(0);
                     break;
                 default:
