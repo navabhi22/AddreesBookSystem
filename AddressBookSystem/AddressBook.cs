@@ -72,7 +72,7 @@ namespace AddressBookSystem
             Console.WriteLine($"Current AddressBook: {bookName}");
             for (int i = 0; i < addressBookDict[bookName].contactList.Count; i++)
             {
-                Console.WriteLine(i+1 + ": " + addressBookDict[bookName].contactList[i].firstName + " " + addressBookDict[bookName].contactList[i].lastName);
+                Console.WriteLine(i + 1 + ": " + addressBookDict[bookName].contactList[i].firstName + " " + addressBookDict[bookName].contactList[i].lastName);
             }
         }
 
@@ -84,7 +84,7 @@ namespace AddressBookSystem
             {
                 if (addressBookDict[bookName].contactList[i].firstName == f_Name)
                 {
-                    Console.WriteLine("contact No. {0}: ", i+1);
+                    Console.WriteLine("contact No. {0}: ", i + 1);
                     Console.WriteLine("First Name: " + addressBookDict[bookName].contactList[i].firstName);
                     Console.WriteLine("Last Name: " + addressBookDict[bookName].contactList[i].lastName);
                     Console.WriteLine("Address: " + addressBookDict[bookName].contactList[i].address);
@@ -178,7 +178,7 @@ namespace AddressBookSystem
             {
                 AddressBook addressBook = new AddressBook();
                 addressBookDict.Add(newAddressBook, addressBook);
-                Console.WriteLine("AddressBook {0} Created Successfully.",newAddressBook);
+                Console.WriteLine("AddressBook {0} Created Successfully.", newAddressBook);
             }
         }
 
@@ -186,9 +186,9 @@ namespace AddressBookSystem
         {
             foreach (var book in addressBookDict)
             {
-                Console.WriteLine(book.Key); 
+                Console.WriteLine(book.Key);
             }
-            
+
         }
 
         public string CheckAddressBook(string adBookName)
@@ -209,7 +209,7 @@ namespace AddressBookSystem
             foreach (var book in addressBookDict)
             {
                 var searchResult = book.Value.contactList.FindAll(x => x.city == userData || x.state == userData);
-                if(searchResult.Count != 0)
+                if (searchResult.Count != 0)
                 {
                     foreach (var item in searchResult)
                     {
