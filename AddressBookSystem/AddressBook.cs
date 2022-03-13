@@ -23,31 +23,44 @@ namespace AddressBookSystem
             addressBookDict[bookName].contactList.Add(personDetails);
         }
 
-
         //UC2 - Add New Contact Details
         public void AddNewContact(string bookName)
         {
-            Console.WriteLine("Enter your First Name: ");
-            string firstName = Console.ReadLine();
-            Console.WriteLine("Enter your Last Name: ");
-            string lastName = Console.ReadLine();
-            Console.WriteLine("Enter your Address: ");
-            string address = Console.ReadLine();
-            Console.WriteLine("Enter your City: ");
-            string city = Console.ReadLine();
-            Console.WriteLine("Enter your State: ");
-            string state = Console.ReadLine();
-            Console.WriteLine("Enter your Zipcode: ");
-            int zipcode = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter your Phone Number: ");
-            long phoneNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter your EmailID: ");
-            string email = Console.ReadLine();
+            try
+            {
+                Console.WriteLine("Enter your First Name: ");
+                string firstName = Console.ReadLine();
+                Console.WriteLine("Enter your Last Name: ");
+                string lastName = Console.ReadLine();
+                Console.WriteLine("Enter your Address: ");
+                string address = Console.ReadLine();
+                Console.WriteLine("Enter your City: ");
+                string city = Console.ReadLine();
+                Console.WriteLine("Enter your State: ");
+                string state = Console.ReadLine();
+                Console.WriteLine("Enter your Zipcode: ");
+                int zipcode = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter your Phone Number: ");
+                long phoneNumber = Convert.ToInt64(Console.ReadLine());
+                Console.WriteLine("Enter your EmailID: ");
+                string email = Console.ReadLine();
 
-            AddContactDetails(firstName, lastName, address, city, state, zipcode, phoneNumber, email, bookName);
-            ViewContacts(bookName);
+                var res = addressBookDict[bookName].contactList.Find(p => p.firstName.Equals(firstName));
+                if (res != null)
+                {
+                    Console.WriteLine("Duplicate contacts not allowed");
+                }
+                else
+                {
+                    AddContactDetails(firstName, lastName, address, city, state, zipcode, phoneNumber, email, bookName);
+                    ViewContacts(bookName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
-
 
         //View contacts of a address book
         public void ViewContacts(string bookName)
@@ -58,7 +71,6 @@ namespace AddressBookSystem
                 Console.WriteLine(i + 1 + ": " + addressBookDict[bookName].contactList[i].firstName + " " + addressBookDict[bookName].contactList[i].lastName);
             }
         }
-
 
         //View Contact Details of a person
         public void ViewContact(string f_Name, string bookName)
@@ -86,7 +98,6 @@ namespace AddressBookSystem
                 Console.WriteLine("Contact not found");
             }
         }
-
 
         // UC3 - Edit Contact Details
         public void EditContact(string input, string bookName)
@@ -140,7 +151,6 @@ namespace AddressBookSystem
             }
         }
 
-
         // UC4 - Delete Contact of a person
         public void DeleteContact(string fName, string lName, string bookName)
         {
@@ -153,7 +163,6 @@ namespace AddressBookSystem
                 }
             }
         }
-
 
         public void AddAddressBook(string newAddressBook)
         {
@@ -168,7 +177,6 @@ namespace AddressBookSystem
                 Console.WriteLine("AddressBook {0} Created Successfully.", newAddressBook);
             }
         }
-
 
         public void ViewAddressBooks()
         {
