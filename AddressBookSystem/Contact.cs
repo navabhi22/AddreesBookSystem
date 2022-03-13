@@ -8,10 +8,6 @@ namespace AddressBookSystem
 {
     internal class Contact
     {
-        /// <summary>
-        /// Creating Contact
-        /// </summary>
-        /// declaring variable
         public string firstName;
         public string lastName;
         public string address;
@@ -31,6 +27,10 @@ namespace AddressBookSystem
             this.zipcode = zipcode;
             this.phoneNumber = phoneNumber;
             this.email = email;
+        }
+        public override string ToString()
+        {
+            return $"{firstName} {lastName} {address} {city} {state} {zipcode} {phoneNumber} {email}";
         }
     }
 }
