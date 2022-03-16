@@ -348,5 +348,42 @@ namespace AddressBookSystem
             }
 
         }
+
+        //UC13 Write to a file Using File IO
+        public void WriteToFile()
+        {
+            foreach (var item in addressBookDict)
+            {
+                string path = @"C:\Users\Acer\source\repos\AddressBookSystem\AddressBookSystem\FileIO.txt";
+                if (File.Exists(path))
+                {
+                    StreamWriter sw = File.AppendText(path);
+                    sw.WriteLine("AddressBook Name: " + item.Key);
+                    foreach (var person in item.Value.contactList)
+                    {
+                        sw.WriteLine(person.ToString());
+                    }
+                    sw.Close();
+                    Console.WriteLine(File.ReadAllText(path));
+                }
+            }
+        }
+
+        //UC14 Read file using Fie IO
+        public void ReadFile()
+        {
+            string path = @"C:\Users\Acer\source\repos\AddressBookSystem\AddressBookSystem\FileIO.txt";
+            if (File.Exists(path))
+            {
+                //Console.WriteLine(File.ReadAllText(path));
+                StreamReader sr = File.OpenText(path);
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+                sr.Close();
+            }
+        }
     }
 }
