@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -369,7 +371,7 @@ namespace AddressBookSystem
             }
         }
 
-        //UC14 Read file using Fie IO
+        //UC13 Read file using Fie IO
         public void ReadFile()
         {
             string path = @"C:\Users\Acer\source\repos\AddressBookSystem\AddressBookSystem\FileIO.txt";
@@ -384,6 +386,39 @@ namespace AddressBookSystem
                 }
                 sr.Close();
             }
+        }
+
+        //UC14 Write the addressBook with person contact as CSV file
+        public void WriteCsvFile()
+        {
+            string csvPath = @"C:\Users\Acer\source\repos\AddressBookSystem\AddressBookSystem\CsvData.csv";
+            StreamWriter sw = new StreamWriter(csvPath);
+            CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture);
+            //cw.WriteHeader<Contact>();
+            
+            foreach (var book in addressBookDict.Values)
+            {
+                //cw.NextRecord(); // adds new line after header
+                cw.WriteRecords<Contact>(book.contactList);
+            }
+            Console.WriteLine("Write the addressBook with person contact as CSV file is Successfull");
+            sw.Flush();
+            sw.Close();
+        }
+
+        //UC14 Read the addressBook with person contact as CSV file
+        public void ReadCsvFile()
+        {
+            string csvPath = @"C:\Users\Acer\source\repos\AddressBookSystem\AddressBookSystem\CsvData.csv";
+            StreamReader sr = new StreamReader(csvPath);
+            CsvReader cr = new CsvReader(sr, CultureInfo.InvariantCulture);
+            List<Contact> readResult = cr.GetRecords<Contact>().ToList();
+            Console.WriteLine("Reading from CSV file");
+            foreach (var item in readResult)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            sr.Close();
         }
     }
 }
